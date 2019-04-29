@@ -1,0 +1,108 @@
+{% extends 'bootstrap/base.html' %}
+
+{% block content %}
+
+<!--Senator Name with link to detail page -->
+<div class="jumbotron container">
+    <h1 class="display-2 text-center"><a href="{{ sen['SENATE_LINK']}}">{{ sen['SENATOR_FULLNAME']}}</a>
+    </h1>
+</div>
+
+<div class="jumbotron container">
+<div class="row">
+
+  <div class="col-md-6">
+    <img class="rounded mx-auto d-block" src="{{ url_for('static', filename="images/"+sen['PICTURE']) }}" alt="Senator Photo">
+  </div>
+
+<div class="col-md-6">
+  <div class="card mb-2">
+    <div class="card-header">
+      District:
+    </div>
+    <div class="card-body">
+      <blockquote class="blockquote mb-0">
+        <p>{{ sen['DISTRICT'] }}</p>
+      </blockquote>
+    </div>
+  </div>
+
+  <div class="card mb-2">
+    <div class="card-header">
+      Party:
+    </div>
+    <div class="card-body">
+      <blockquote class="blockquote mb-0">
+        <p>{{ sen['PARTY'] }}</p>
+      </blockquote>
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="row">
+  <div class="col">
+    <div class="card mb-2">
+      <div class="card-header">
+        Counties this Senator represents:
+      </div>
+      <div class="card-body">
+      <blockquote class="blockquote mb-0">
+        <p>{{ sen['COUNTIES'] }}</p>
+      </blockquote>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col">
+    <div class="card mb-2">
+      <div class="card-header">
+        Return to menu:
+      </div>
+      <div class="card-body">
+        <blockquote class="blockquote mb-0">
+          <p><a href="{{ url_for('index') }}">Select a different Florida Senator.</a></p>
+        </blockquote>
+      </div>
+    </div>
+  </div>
+</div>
+</div> 	<!-- Jumbotron closing div-->
+
+
+<div class= "jumbotron container">
+<h2 class="display-4">List of Bills Senator {{ sen['LAST_NAME']}} has been working on: </h2>
+<ol>
+  {% for bill in sen_bills_list %}
+  <li> {{bill['NUMBER']}}:
+
+    <a href = "{{bill['BILL_LINK']}}">
+      {{bill['TITLE']}}
+    </a>
+
+      <p>{{bill['LAST_ACTION_AND_LOCATION']}}</p>
+
+   </li>
+  {% endfor %}
+</ol>
+</div>
+
+
+	<!-- NOTE the way to link to a route: Use the function name -->
+<div class= "jumbotron container">
+	<div class="col display-4 text-center">
+    <p>Want to select a diffrent Florida Senator?<a href="{{ url_for('index') }}"> Return to menu</a></p>
+	</div>
+  <div class="text-center">
+    <img width="230" alt="Florida Seal" src="{{ url_for('static',filename='images/FLseal.png')}}">
+  </div>
+</div>
+<div class= "jumbotron container">
+  <footer>
+      <p>Created by Daphna Krause for Adv Web Apps final project. The code for this project and others I have worked on can be found at <a href="https://github.com/DaphnaKrause">my GitHub</a>. The goal of this website is to provide quick access to Bills sponsored by Florida senators. Made by Web scraping, Flask, Flask-WTF, Python and Bootstrap 4</p>
+  </footer>
+</div>
+
+{% endblock %}

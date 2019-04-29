@@ -1,0 +1,35 @@
+{% extends 'bootstrap/base.html' %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %}
+Florida Senators and Their Bills
+{% endblock %}
+
+{% block content %}
+<div class="jumbotron container mb-3 mt-3">
+  <div class="row justify-content-center">
+    <div class="col-sm-8 mx-auto pl-5">
+      <h1 class="display-4">What are your Florida Senators doing?</h1>
+    </div>
+    <div class="col-sm-4 mx-auto mb-3">
+      <img width="200" alt="Florida Seal" src="{{ url_for('static',filename='images/FLseal.png')}}">
+    </div>
+  </div>
+</div>
+<div class="jumbotron container mb-3 mt-3">
+  <div class="container px-2">
+  <div class="row justify-content-center">
+    <div class="col-lg-8 col-md-10 col-sm-12 p-3 mb-2 bg-dark text-white">
+
+      {{ wtf.quick_form(form) }}
+
+    </div>
+  </div>
+</div>
+</div>
+<div class="jumbotron container mb-3 mt-3">
+<footer>
+      <p>Created by Daphna Krause for Adv Web Apps final project. The code for this project and others I have worked on can be found at <a href="https://github.com/DaphnaKrause">my GitHub</a>. The goal of this website is to provide quick access to Bills sponsored by Florida senators. Made by Web scraping, Flask, Flask-WTF, Python and Bootstrap 4</p>
+</footer>
+</div>
+{% endblock %}
